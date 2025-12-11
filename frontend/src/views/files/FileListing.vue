@@ -59,6 +59,12 @@
           @action="switchView"
         />
         <action
+          v-if="headerButtons.favorite"
+          :icon="isFavorite ? 'favorite' : 'favorite_border'"
+          :label="t('buttons.favorite')"
+          @action="markFavorite"
+        />
+        <action
           v-if="headerButtons.download"
           icon="file_download"
           :label="t('buttons.download')"
@@ -269,6 +275,12 @@
             show="share"
           />
           <action
+            v-if="headerButtons.favorite"
+            :icon="isFavorite ? 'favorite' : 'favorite_border'"
+            :label="t('buttons.favorite')"
+            @action="markFavorite"
+          />
+          <action
             v-if="headerButtons.rename"
             icon="mode_edit"
             :label="t('buttons.rename')"
@@ -473,6 +485,10 @@ const viewIcon = computed(() => {
     : icons[authStore.user.viewMode];
 });
 
+const isFavorite = computed(() => {
+  return false; // TODO: Implement favorite functionality
+});
+
 const headerButtons = computed(() => {
   return {
     upload: authStore.user?.perm.create,
@@ -483,6 +499,7 @@ const headerButtons = computed(() => {
     share: fileStore.selectedCount === 1 && authStore.user?.perm.share,
     move: fileStore.selectedCount > 0 && authStore.user?.perm.rename,
     copy: fileStore.selectedCount > 0 && authStore.user?.perm.create,
+    favorite: fileStore.selectedCount === 1,
   };
 });
 
@@ -997,6 +1014,10 @@ const uploadFunc = () => {
   } else {
     document.getElementById("upload-input")?.click();
   }
+};
+
+const markFavorite = async () => {
+  // TODO: Implement favorite functionality
 };
 
 const setItemWeight = () => {

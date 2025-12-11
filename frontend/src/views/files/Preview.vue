@@ -19,6 +19,12 @@
       <template #actions>
         <action
           :disabled="layoutStore.loading"
+          :icon="isFavorite ? 'favorite' : 'favorite_border'"
+          :label="$t('buttons.favorite')"
+          @action="markFavorite"
+        />
+        <action
+          :disabled="layoutStore.loading"
           v-if="authStore.user?.perm.rename"
           icon="mode_edit"
           :label="$t('buttons.rename')"
@@ -301,6 +307,10 @@ const isCsv = computed(() => fileStore.req?.extension.toLowerCase() == ".csv");
 
 const isResizeEnabled = computed(() => resizePreview);
 
+const isFavorite = computed(() => {
+  return false; // TODO: Implement favorite functionality
+});
+
 const subtitles = computed(() => {
   if (fileStore.req?.subtitles) {
     return api.getSubtitlesURL(fileStore.req);
@@ -470,4 +480,7 @@ const download = () => window.open(downloadUrl.value);
 const editAsText = () => {
   router.push({ path: route.path, query: { edit: "true" } });
 };
+
+// TODO: Implement favorite functionality
+const markFavorite = () => {};
 </script>

@@ -47,7 +47,8 @@
     "saveChanges": "Save changes",
     "editAsText": "Edit as Text",
     "increaseFontSize": "Increase font size",
-    "decreaseFontSize": "Decrease font size"
+    "decreaseFontSize": "Decrease font size",
+    "favorite": "Favorite"
   },
   "download": {
     "downloadFile": "Download File",
